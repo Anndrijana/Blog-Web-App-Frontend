@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse">
+	<div class="container">
+	  <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Home</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+		  <a class="navbar-brand">Wall</a>
+	  </div>
+	  <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li *ngIf="auth && role === 'USER'" ><a [routerLink]="['/post/add']">Add post</a></li>
+        <li *ngIf="!auth || (auth && role === 'USER')"><a [routerLink]="['/posts']">All posts</a></li>
+        <li *ngIf="auth && role === 'ADMIN'"><a [routerLink]="['/posts/all']">All posts</a></li>
+        <li *ngIf="auth" ><a (click)="logout()">Log out</a></li>
+        <li *ngIf="!auth" ><a [routerLink]="['/login']">Log in</a></li>
+        <li *ngIf="!auth"><a [routerLink]="['/register']">Registration</a></li>
+      </ul>
+	  </div>
+	</div>
+</nav> 
+

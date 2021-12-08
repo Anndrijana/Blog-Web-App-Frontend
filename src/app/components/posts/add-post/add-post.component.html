@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-md-12">
+      <div class="alert alert-info" style="align-content: center">
+          <h1 style="padding-left:46%"> Create post</h1>
+      </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <textarea rows="8" cols="120" placeholder="Post text area..."  [(ngModel)]="post.text"></textarea>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <button class="btn btn-success" (click)="save()" >Save</button>
+    <button class="btn btn-danger" (click)="goBackPost()">Cancel</button>
+  <div>
+</div>

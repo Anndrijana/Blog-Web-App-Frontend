@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-md-12">
+      <div class="alert alert-info" style="align-content: center">
+          <h1 style="padding-left:46%">Post</h1>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Date & Time</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th> 
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>{{post.user.firstName + ' ' + post.user.lastName}}</td>
+              <td>{{post.dateAndTime}}</td>
+              <td *ngIf="post && email && email === post.user.email"><button class="btn btn-success" (click)="updatePost(post)">Update</button></td>
+              <td *ngIf="post && email && email === post.user.email"><button class="btn btn-danger" (click)="deletePost(post)">Delete</button></td>
+              <td *ngIf="post && email && email !== post.user.email && role === 'USER'" colspan="2"><rating (click)="ratePost()" [(ngModel)]="post.rating" [readonly]="readonlyRating"></rating></td>
+            </tr>
+          </tbody>
+      </table>
+      <div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-sm-offset-2">
+      <textarea rows="8" cols="120" placeholder="Post text area..."  [ngModel]="post.text" readonly></textarea>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor = "let tempComment of post.comments; let i = index">
+          <td>{{tempComment.user.firstName + ' ' + tempComment.user.lastName}}</td>
+          <td>
+            <input style="width: 500px;" type="text" [(ngModel)] = "tempComment.commentText" [readonly]="listOfReadOnlyField[i]"/>
+          </td>
+          <td *ngIf="email && email === tempComment.user.email">
+            <button class="btn btn-success btn-md pull-right" (click)="updateComment(i, tempComment)" *ngIf="listOfReadOnlyField[i]">Update</button>
+            <button class="btn btn-success btn-md pull-right" (click)="saveChangesAfterUpdate(tempComment.id, tempComment.commentText)" *ngIf="!listOfReadOnlyField[i]">Save</button> 
+          </td>
+          <td *ngIf="email && email != tempComment.user.email">&nbsp;</td>
+          <td *ngIf="email && (email === tempComment.user.email || role === 'ADMIN')">
+            <button class="btn btn-danger" (click)="deleteComment(tempComment)" [style.display]="proba">Delete</button>
+          </td>
+          <td *ngIf="email != tempComment.user.email">&nbsp;</td>
+        </tr>
+        <br>
+        <br>
+        <tr *ngIf="email && role === 'USER'"> 
+          <td colspan="3"><input style="margin-left: 20px; width: 600px;" type="text" [(ngModel)] = "selectedComment"/> </td>
+          <td><button  class="btn btn-success btn-md pull-right" (click)="addCommentClick()">Add comment</button></td>
+        </tr>
+      </tbody>
+    </table>
+  <div>
+</div>

@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="login-form">
+  <form (ngSubmit)="signup()" method="post">
+      <h2 class="text-center">Sign up</h2>       
+      <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email" required="required">
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required="required">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" placeholder="FirstName" required="required">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" placeholder="LastName" required="required">
+      </div>
+      <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-block" value="Sign up">
+      </div>  
+  </form>
+  <p class="text-center"><a href="/#/login">Log in</a></p>
+</div>

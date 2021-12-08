@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-md-12">
+      <div class="alert alert-info" style="align-content: center">
+          <h1 style="padding-left:46%">Posts</h1>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-sm-offset-2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Date & Time</th>
+          <th>Text</th>
+          <th>Rating</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor = "let post of posts">
+            <td>{{post.user.firstName + ' ' + post.user.lastName}}</td>
+            <td>{{post.dateAndTime}}</td>
+            <td>{{post.text}}</td>
+            <td>{{post.rating}}</td>
+            <td><button class="btn btn-default" (click)="viewDetails(post.id)" >Details</button></td>
+          </tr>
+      </tbody>
+    </table>
+  <div>
+</div>
